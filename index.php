@@ -44,25 +44,16 @@ nella pagina principale
             <button type="submit">Invia</button>
         </form>
         <?php
+        include __DIR__.'/function.php';
         $lengthPW = $_GET['lunghezza-password'];
         // var_dump($_GET);
         ?>
         <p> la password è:
             <?php echo passwordGenerator($lengthPW); ?>
+            <//?php// echo passwordGenerator($lengthPW); ?>
         </p>
     </div>
 </body>
 
 </html>
-<?php
-function passwordGenerator($length)
-{
-    $caratteri = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $password = '';
-    for ($i = 0; $i < $length; $i++) {
-        $password =$password. $caratteri[rand(0, strlen($caratteri))];
-    }
-    return $password;
-}
 
-?>
