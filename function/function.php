@@ -7,7 +7,6 @@ function passwordGenerator($length)
             $password = $password . $caratteri[rand(0, strlen($caratteri))-1];
         }
         return $password;
-
 }
 
 ?>

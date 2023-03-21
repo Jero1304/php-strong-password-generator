@@ -38,22 +38,26 @@ nella pagina principale
 </head>
 
 <body>
-    <div class="container border">
-        <form class="py-5" action="" method="GET">
-            <input type="number" name="lunghezza-password" required placeholder="Lunghezza password">
-            <button type="submit">Invia</button>
-        </form>
-        <?php
-        include __DIR__.'/function.php';
+    
+    <?php
+    session_start();
+    include __DIR__ . '/function/function.php';
+    if (isset($_GET['lunghezza-password'])) {
         $lengthPW = $_GET['lunghezza-password'];
-        // var_dump($_GET);
-        ?>
-        <p> la password è:
-            <?php echo passwordGenerator($lengthPW); ?>
-            <//?php// echo passwordGenerator($lengthPW); ?>
-        </p>
-    </div>
+        $finalPW = passwordGenerator($lengthPW) ?? false;
+    
+        if ($finalPW) {
+            $_SESSION['password'] = $finalPW;
+        }
+        if (isset($_SESSION['password'])) {
+            header('Location: ./password.php');
+        }
+    }
+    ?>
+    <?php
+    include __DIR__ . '/form.php';
+    ?>
+
 </body>
 
 </html>
-
